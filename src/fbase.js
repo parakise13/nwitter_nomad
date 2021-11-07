@@ -2,8 +2,9 @@ import * as firebase from "firebase/app";
 // import { initializeApp } from "firebase/app";
 // import { getAuth } from "firebase/auth";
 // firebase의 무언가를 사용하기 위해서는 항상 import 해줘야함
-
 import "firebase/auth";
+import "firebase/firestore";
+import "firebase/storage";
 
 // Your web app's Firebase configuration
 // 하기의 key들은 .env에 따로 정의해주고 .env는 gitignore에 넣어 commit 되지 않게해서 key가 다른 사람들에게 공개되지 않도록함
@@ -23,4 +24,8 @@ const firebaseConfig = {
 // Initialize Firebase
 // const app = initializeApp(firebaseConfig);
 firebase.initializeApp(firebaseConfig);
+
+export const firebaseInstance = firebase;
 export const authService = firebase.auth();
+export const dbService = firebase.firestore();
+export const storageService = firebase.storage();
