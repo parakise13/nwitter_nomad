@@ -15,18 +15,35 @@ function App() {
     authService.onAuthStateChanged((user) => {
       // 기본적으로 onAuthStateChanged는 로그인이 될때, 로그아웃 할때 앱이 리셋될때를 인지함
       if (user) {
-        setUserObj(user);
+        setUserObj({
+          displayName: user.displayName,
+          uid: user.uid,
+          updateProfile: (args) => user.updateProfile(args),
+        });
       }
       setInit(true);
     });
   }, []);
+
+  const refreshUser = () => {
+    const user = authService.currentUser;
+    setUserObj({
+      displayName: user.displayName,
+      uid: user.uid,
+      updateProfile: (args) => user.updateProfile(args),
+    });
+  };
 
   return (
     <>
       {/* init이 true가 되면 화면을 보여주고 아니면 initializing...을 보여줌 */}
       {init ? (
         // Boolean으로 userObj가 true일때 즉, userObj가 있을때 로그인이 됨
-        <AppRouter isLoggedIn={Boolean(userObj)} userObj={userObj} />
+        <AppRouter
+          refreshUser={refreshUser}
+          isLoggedIn={Boolean(userObj)}
+          userObj={userObj}
+        />
       ) : (
         "Initializing..."
       )}

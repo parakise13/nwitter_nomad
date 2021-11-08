@@ -8,7 +8,7 @@ const Home = ({ userObj }) => {
   const [nweet, setNweet] = useState("");
   // nweet과 setNweet은 form을 위한 state.
   const [nweets, setNweets] = useState([]);
-  const [attachment, setAttachment] = useState();
+  const [attachment, setAttachment] = useState("");
 
   // const getNweets = async () => {
   // document의 id와 함께 내가 이전에 만들었던 트윗들도 모두 가져와서 setNweets에 넣어주고 보일 수 있게 해줌
